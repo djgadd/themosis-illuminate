@@ -4,7 +4,7 @@
  * Plugin Name: Themosis Illuminate
  * Plugin URI: https://keltiecochrane.com
  * Description: A plugin that provides various illuminate packages for developers.
- * Version: 0.0.1
+ * Version: 0.1.0
  * Author: Daniel Gadd @ Keltie Cochrane Ltd.
  * Author URI: https://keltiecochrane.com
  * Text Domain: themosis-illuminate.
@@ -139,3 +139,6 @@ container('action')->add('plugins_loaded', function () use ($vars) {
 /*
  * Add extra features below.
  */
+
+// Alias the facade
+class_alias(Com\KeltieCochrane\Illuminate\Facades\Validator::class, 'Validator');

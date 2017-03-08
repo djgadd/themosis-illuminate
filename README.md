@@ -14,7 +14,8 @@ Packages
 --------
 The following packages have been implemented: -
 
-* [Illuminate/validation](https://github.com/illuminate/validation)
+* [Illuminate/validation](https://github.com/illuminate/validation) (you'll need
+to remove the existing Validator from your theme.config.php file)
 
 Support
 -------
