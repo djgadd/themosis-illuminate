@@ -2,7 +2,6 @@
 
 namespace KeltieCochrane\Illuminate\Config;
 
-use Illuminate\Config\Repository;
 use Themosis\Foundation\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
