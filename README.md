@@ -44,10 +44,10 @@ Use at you normally would, e.g.: -
   Config::get('something');
 
   // Setting a default
-  Config::get('theme.lang', 'en-GB');
+  Config::get('theme.locale', 'en-GB');
 
   // Using ArrayAccess
-  app('config')['theme.lang'];
+  app('config')['theme.locale'];
 ```
 
 ### Filesystem
@@ -59,7 +59,7 @@ Copy the `filesystem.config.php` file to your `theme/resources/config` folder,
 some defaults have been setup for you.
 
 Add the service provider to your `theme/resources/config/providers.config.php`: -
-`KeltieCochrane\Illuminate\Filesystem\FilesystemServiceProvider::class`,
+`KeltieCochrane\Illuminate\Filesystem\FilesystemServiceProvider::class,`
 
 Optionally add the facades in your `theme/resources/config/theme.config.php`: -
 ```
