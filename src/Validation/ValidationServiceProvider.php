@@ -1,6 +1,6 @@
 <?php
 
-namespace Com\KeltieCochrane\Illuminate\Validation;
+namespace KeltieCochrane\Illuminate\Validation;
 
 use Illuminate\Validation\Factory;
 use Themosis\Foundation\ServiceProvider;
@@ -16,8 +16,9 @@ class ValidationServiceProvider extends ServiceProvider
   protected $defer = true;
 
   /**
-   * Add additional validation rules for WordPress
-   * @return boid
+   * Add verify_nonce validation rule
+   *
+   * @return void
    */
   public function boot ()
   {
@@ -28,8 +29,7 @@ class ValidationServiceProvider extends ServiceProvider
   }
 
   /**
-   * Register the service provider.
-   * @return  void
+   * {@inheritdoc}
    */
   public function register ()
   {
@@ -67,14 +67,15 @@ class ValidationServiceProvider extends ServiceProvider
       return new DatabasePresenceVerifier($app['db']);
     });
   }
+
   /**
-   * Get the services provided by the provider.
-   * @return  array
+   * {@inheritdoc}
    */
   public function provides ()
   {
     return [
-      'validator', 'validation.presence',
+      'validator',
+      'validation.presence',
     ];
   }
 }

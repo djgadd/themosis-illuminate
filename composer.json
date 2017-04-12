@@ -25,7 +25,18 @@
     "php": ">=7.0",
     "composer/installers": "~1.2",
     "illuminate/support": "^5.4",
+    "illuminate/filesystem": "^5.4",
     "illuminate/validation": "^5.4",
-    "illuminate/translation": "^5.4"
+    "illuminate/translation": "^5.4",
+    "illuminate/mail": "^5.4",
+    "illuminate/config": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "KeltieCochrane\\Illuminate\\": "./src/"
+    },
+    "files": [
+      "./src/helpers.php"
+    ]
   }
 }
