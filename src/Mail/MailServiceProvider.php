@@ -27,8 +27,21 @@ class MailServiceProvider extends ServiceProvider
   public function register()
   {
     $this->registerSwiftMailer();
+    $this->registerWpMailTransport();
     $this->registerIlluminateMailer();
     $this->registerMarkdownRenderer();
+  }
+
+  /**
+   * Register our wp_mail transport
+   *
+   * @return void
+   */
+  protected function registerWpMailTransport()
+  {
+    $this->app['swift.transport']->extend('wp_mail', function () {
+      return new Transport\WpMailTransport;
+    });
   }
 
   /**
