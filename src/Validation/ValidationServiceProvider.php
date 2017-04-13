@@ -4,8 +4,8 @@ namespace KeltieCochrane\Illuminate\Validation;
 
 use Illuminate\Validation\Factory;
 use Themosis\Foundation\ServiceProvider;
-use Com\KeltieCochrane\Illuminate\Facades\Validator;
 use Illuminate\Validation\DatabasePresenceVerifier;
+use KeltieCochrane\Illuminate\Validation\ValidatorFacade;
 
 class ValidationServiceProvider extends ServiceProvider
 {
@@ -16,13 +16,13 @@ class ValidationServiceProvider extends ServiceProvider
   protected $defer = true;
 
   /**
-   * Add verify_nonce validation rule
+   * Add valid_nonce validation rule
    *
    * @return void
    */
   public function boot ()
   {
-    Validator::extend('verify_nonce', function ($attaribute, $value, $params, $validator) {
+    ValidatorFacade::extend('valid_nonce', function ($attaribute, $value, $params, $validator) {
       $action = $params[0];
       return (bool) wp_verify_nonce($value, $action);
     });
