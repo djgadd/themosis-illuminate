@@ -1,7 +1,5 @@
 # Themosis Illuminate
-A package for the Themosis framework that implements various Illuminate
-packages, some replace the Themosis packages (such as config and validator.)
-Also loads in most of Laravel's helper functions (see below.)
+A package for the Themosis framework that implements various Illuminate packages, some replace the Themosis packages (such as config and validator.) Also loads in most of Laravel's helper functions (see below.)
 
 ## Install
 Install through composer: -
@@ -19,11 +17,7 @@ The following packages have been implemented: -
 * [illuminate/validation](https://github.com/illuminate/validation)
 
 ### Config
-To use the config (which we recommend as it implements ArrayAccess which is
-required by most of the package implementations here) you'll need to replace
-Themosis' Service Provider and Facade. It's API compatible but implements
-additional features (it seems likely Themosis will eventually move to the
-Illuminate package [in the future too](https://github.com/themosis/framework/issues/372).)
+To use the config (which we recommend as it implements ArrayAccess which is required by most of the package implementations here) you'll need to replace Themosis' Service Provider and Facade. It's API compatible but implements additional features (it seems likely Themosis will eventually move to the Illuminate package [in the future too](https://github.com/themosis/framework/issues/372).)
 
 #### Activation
 Add the service provider to your `theme/resources/config/providers.config.php`: -
@@ -32,10 +26,7 @@ Add the service provider to your `theme/resources/config/providers.config.php`: 
 Replace the facade in your `theme/resources/config/theme.config.php`: -
 `'Config' => KeltieCochrane\Illuminate\Config\ConfigFacade::class,`
 
-Note: You don't necassarily have to add the facade at this moment, as it
-effectively does the same thing that the Themosis facade, but it's worth adding
-in case we need to make any changes in line with the Illuminate facade in the
-future.
+Note: You don't necassarily have to add the facade at this moment, as it effectively does the same thing that the Themosis facade, but it's worth adding in case we need to make any changes in line with the Illuminate facade in the future.
 
 #### Examples
 Use at you normally would, e.g.: -
@@ -51,12 +42,10 @@ Use at you normally would, e.g.: -
 ```
 
 ### Filesystem
-The filesystem is required by Translation and Validation, but is a useful
-feature to have anyway.
+The filesystem is required by Translation and Validation, but is a useful feature to have anyway.
 
 #### Activation
-Copy the `filesystem.config.php` file to your `theme/resources/config` folder,
-some defaults have been setup for you.
+Copy the `filesystem.config.php` file to your `theme/resources/config` folder, some defaults have been setup for you.
 
 Add the service provider to your `theme/resources/config/providers.config.php`: -
 `KeltieCochrane\Illuminate\Filesystem\FilesystemServiceProvider::class,`
@@ -88,17 +77,12 @@ Optionally add the facades in your `theme/resources/config/theme.config.php`: -
 See the [Laravel docs](https://laravel.com/docs/5.4/filesystem) for more info.
 
 ### Mail
-Mail is optional and not required by anything else, but is a nicer way of sending
-emails than through WordPress. A wp_mail Transport is provided and is used by
-default, so if your WordPress instance can send mail so can the Mail service.
+Mail is optional and not required by anything else, but is a nicer way of sending emails than through WordPress. A wp_mail Transport is provided and is used by default, so if your WordPress instance can send mail so can the Mail service.
 
 #### Activation
-Copy the `mail.config.php` file to your `theme/resources/config` folder,
-configure as appropriate.
+Copy the `mail.config.php` file to your `theme/resources/config` folder, configure as appropriate.
 
-If you're going to be using an external service such as MailGun or SparkPost
-you'll need to add the following to your `theme/resources/services.config.php` (
-you may need to create this file if you haven't already got one): -
+If you're going to be using an external service such as MailGun or SparkPost you'll need to add the following to your `theme/resources/services.config.php` (you may need to create this file if you haven't already got one): -
 ```
   'mailgun' => [
       'domain' => env('MAILGUN_DOMAIN'),
@@ -142,13 +126,13 @@ Translation requires Filesystem to be loaded in and is required by Validation.
 
 #### Activation
 Add the service provider to your `theme/resources/config/providers.config.php`: -
-`KeltieCochrane\Illuminate\Translation\TranslationServiceProvider::class`,
+`KeltieCochrane\Illuminate\Translation\TranslationServiceProvider::class,`
 
 Optionally add the facades in your `theme/resources/config/theme.config.php`: -
 `'Lang' => KeltieCochrane\Illuminate\Translation\LangFacade::class,`
 
 #### Files
-You can add translations from the [Laravel](https://github.com/laravel/laravel/tree/master/resources/lang), you'll need to add them to your theme/languages/{locale} folder, the only one worth copying for now is the validation file (if indeed you're using validation.)
+You can add translations from the [Laravel](https://github.com/laravel/laravel/tree/master/resources/lang), you'll need to add them to your `theme/resources/lang` folder, the only one worth copying for now is the validation file (if indeed you're using validation.) You can of course create your own files to add translation throughout your site, but we'd still recommend using a translation plugin.
 
 #### Examples
 ```
@@ -173,12 +157,11 @@ You can add translations from the [Laravel](https://github.com/laravel/laravel/t
 See the [Laravel docs](https://laravel.com/docs/5.4/localization) for more info.
 
 ### Validation
-Validation requires Translation and Filesystem. It replaces the built in Themosis
-Validator (if you use the facade) which is more of a sanatiser than a validator.
+Validation requires Translation and Filesystem. It replaces the built in Themosis Validator (if you use the facade) which is more of a sanatiser than a validator.
 
 #### Activation
 Add the service provider to your `theme/resources/config/providers.config.php`: -
-`KeltieCochrane\Illuminate\Validation\ValidationServiceProvider::class`,
+`KeltieCochrane\Illuminate\Validation\ValidationServiceProvider::class,`
 
 Add the facades in your `theme/resources/config/theme.config.php`: -
 `'Lang' => KeltieCochrane\Illuminate\Validation\ValidatorFacade::class,`
