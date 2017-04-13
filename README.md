@@ -89,7 +89,8 @@ See the [Laravel docs](https://laravel.com/docs/5.4/filesystem) for more info.
 
 ### Mail
 Mail is optional and not required by anything else, but is a nicer way of sending
-emails than through WordPress.
+emails than through WordPress. A wp_mail Transport is provided and is used by
+default, so if your WordPress instance can send mail so can the Mail service.
 
 #### Activation
 Copy the `mail.config.php` file to your `theme/resources/config` folder,
@@ -116,17 +117,22 @@ you may need to create this file if you haven't already got one): -
 ```
 
 Add the service provider to your `theme/resources/config/providers.config.php`: -
-`KeltieCochrane\Illuminate\Mail\MailServiceProvider::class`,
+`KeltieCochrane\Illuminate\Mail\MailServiceProvider::class,`
 
 Optionally add the facades in your `theme/resources/config/theme.config.php`: -
 `'Mail' => KeltieCochrane\Illuminate\Mail\MailFacade::class,`
 
 #### Examples
 ```
-  // Send an email and BCC a mailbin
-  Mail::to('someone@somecompany.tld')
-    ->bcc('mailbin@somecompany.tld')
-    ->send(view('mail.welcome'));
+  // Send an email
+  Mail::send('mail.welcome', ['with' => 'Some data for the view.'], function ($mailer) {
+    $attachmentPath = Storage::disk('dist')->getDriver()->getAdapter()->getPathPrefix().'images/call-icon.svg';
+
+    $mailer->to('someone@somecompany.tld')
+      ->bcc('mailbin@somecompany.tld')
+      ->subject('Subject')
+      ->attach($attachmentPath);
+  });
 ```
 
 See the [Laravel docs](https://laravel.com/docs/5.4/mail) for more info.
@@ -253,8 +259,7 @@ See the [Laravel docs](https://laravel.com/docs/5.4/helpers) for more info.
 
 ## Todo
 * Tests - a lot of this is trusting in the Laravel packages and Themosis behaving themselves
-* Mail driver that uses wp_mail()
-* Implement more packages
+* Add more packages
 * Possibly merge Cache and Logger into this so there's one package to rule them all
 
 ## Support
