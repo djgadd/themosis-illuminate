@@ -1,10 +1,13 @@
 <?php
 
-namespace Com\KeltieCochrane\Illuminate\Facades;
+namespace KeltieCochrane\Illuminate\Validation;
 
 use Themosis\Facades\Facade;
 
-class Validator extends Facade
+/**
+ * @see \Illuminate\Validation\Factory
+ */
+class ValidatorFacade extends Facade
 {
   /**
    * Get the registered name of the component.

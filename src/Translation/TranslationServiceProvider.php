@@ -1,6 +1,6 @@
 <?php
 
-namespace Com\KeltieCochrane\Illuminate\Translation;
+namespace KeltieCochrane\Illuminate\Translation;
 
 use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\Translator;
@@ -16,21 +16,19 @@ class TranslationServiceProvider extends ServiceProvider
   protected $defer = true;
 
   /**
-   * Register the service provider.
-   *
-   * @return void
+   * {@inheritdoc}
    */
-  public function register ()
+  public function register()
   {
     $this->registerLoader();
+
     $this->app->singleton('translator', function ($app) {
       $loader = $app['translation.loader'];
+
       // When registering the translator component, we'll need to set the default
       // locale as well as the fallback locale. So, we'll grab the application
       // configuration so we can easily get both of these values from there.
-      // $locale = $app['config']['theme.locale'];
-      $locale = 'en';
-      $trans = new Translator($loader, $locale);
+      $trans = new Translator($loader, $app['config']['theme.locale']);
       $trans->setFallback('en');
       return $trans;
     });
@@ -41,20 +39,21 @@ class TranslationServiceProvider extends ServiceProvider
    *
    * @return void
    */
-  protected function registerLoader ()
+  protected function registerLoader()
   {
     $this->app->singleton('translation.loader', function ($app) {
-      return new FileLoader($app['files'], themosis_path('plugin.com.keltiecochrane.illuminate.languages'));
+      return new FileLoader($app['files'], themosis_path('theme.resources').'lang');
     });
   }
 
   /**
-   * Get the services provided by the provider.
-   *
-   * @return array
+   * {@inheritdoc}
    */
-  public function provides ()
+  public function provides()
   {
-    return ['translator', 'translation.loader'];
+    return [
+      'translator',
+      'translation.loader'
+    ];
   }
 }
