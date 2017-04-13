@@ -35,23 +35,23 @@ return [
     // Your theme/ folder
     'theme' => [
       'driver' => 'local',
-      'root' => themosis_path('base'),
-      'url' => str_replace('/dist/', '/', themosis_theme_assets()),
+      'root' => themosis_path('theme'),
+      'url' => str_replace('/dist', '/', themosis_theme_assets()),
       'visibility' => 'public',
     ],
 
     // Your theme/resources folder
     'resources' => [
       'driver' => 'local',
-      'root' => themosis_path('theme'),
-      'url' => str_replace('/dist/', '/resources', themosis_theme_assets()),
+      'root' => themosis_path('theme.resources'),
+      'url' => str_replace('/dist', '/resources/', themosis_theme_assets()),
       'visibility' => 'public',
     ],
 
     // Your theme/dist folder
     'dist' => [
       'driver' => 'local',
-      'root' => themosis_path('base').DS.'dist',
+      'root' => themosis_path('theme').'dist',
       'url' => themosis_theme_assets(),
       'visibility' => 'public',
     ],
