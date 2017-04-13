@@ -157,20 +157,21 @@ You can add translations from the [Laravel](https://github.com/laravel/laravel/t
 See the [Laravel docs](https://laravel.com/docs/5.4/localization) for more info.
 
 ### Validation
-Validation requires Translation and Filesystem. It replaces the built in Themosis Validator (if you use the facade) which is more of a sanatiser than a validator.
+Validation requires Translation and Filesystem. It replaces the built in Themosis Validator (if you use the facade) which is more of a sanatiser than a validator. The Validator has been extended with a `valid_nonce` rule that can be used to verify a nonce.
 
 #### Activation
 Add the service provider to your `theme/resources/config/providers.config.php`: -
 `KeltieCochrane\Illuminate\Validation\ValidationServiceProvider::class,`
 
 Add the facades in your `theme/resources/config/theme.config.php`: -
-`'Lang' => KeltieCochrane\Illuminate\Validation\ValidatorFacade::class,`
+`'Validator' => KeltieCochrane\Illuminate\Validation\ValidatorFacade::class,`
 
 #### Examples
 ```
   $validator = Validator::make($request->all(), [
-    'title' => 'required|unique:posts|max:255',
+    'title' => 'required|max:255',
     'body' => 'required',
+    'nonce' => 'valid_nonce:action',
   ]);
 
   if ($validator->fails()) {
