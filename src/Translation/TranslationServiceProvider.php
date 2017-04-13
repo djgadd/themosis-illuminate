@@ -28,10 +28,8 @@ class TranslationServiceProvider extends ServiceProvider
       // When registering the translator component, we'll need to set the default
       // locale as well as the fallback locale. So, we'll grab the application
       // configuration so we can easily get both of these values from there.
-      // $locale = $app['config']['theme.locale'];
-      $locale = $app['config']['theme.locale'] ?: 'en';
-      $trans = new Translator($loader, $locale);
-      $trans->setFallback($app['config']['theme.locale'] ?: 'en');
+      $trans = new Translator($loader, $app['config']['theme.locale']);
+      $trans->setFallback('en');
       return $trans;
     });
   }
@@ -44,7 +42,7 @@ class TranslationServiceProvider extends ServiceProvider
   protected function registerLoader()
   {
     $this->app->singleton('translation.loader', function ($app) {
-      return new FileLoader($app['files'], themosis_path('base').DS.'translations');
+      return new FileLoader($app['files'], themosis_path('theme.resources').'lang');
     });
   }
 
