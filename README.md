@@ -17,7 +17,7 @@ The following packages have been implemented: -
 * [illuminate/validation](https://github.com/illuminate/validation)
 
 ### Config
-To use the config (which we recommend as it implements ArrayAccess which is required by most of the package implementations here) you'll need to replace Themosis' Service Provider and Facade. It's API compatible but implements additional features (it seems likely Themosis will eventually move to the Illuminate package [in the future too](https://github.com/themosis/framework/issues/372).)
+To use the config (which we recommend as it implements ArrayAccess which is required by most of the package implementations here) you'll need to replace Themosis' Service Provider and Facade. It's API compatible but implements additional features (it seems likely Themosis will eventually move to the Illuminate package [in the future too](https://github.com/themosis/framework/issues/372).) Also allows config files to be extended, which is useful in parent/child scenarios. 
 
 #### Activation
 Add the service provider to your `theme/resources/config/providers.config.php`: -
