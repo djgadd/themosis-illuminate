@@ -2,6 +2,7 @@
 
 namespace KeltieCochrane\Illuminate\Config;
 
+use Illuminate\Config\Repository;
 use Themosis\Foundation\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
@@ -12,7 +13,14 @@ class ConfigServiceProvider extends ServiceProvider
   public function register ()
   {
     $this->app->singleton('config', function($app) {
-      return new Repository($app['config.finder']);
+      return new Repository([]);
+    });
+
+    // Provide some compatibility with Themosis
+    $this->app->alias('config', 'config.factory');
+
+    $this->app->singleton('config.finder', function () {
+      return new ConfigFinder();
     });
   }
 
@@ -23,6 +31,8 @@ class ConfigServiceProvider extends ServiceProvider
   {
     return [
       'config',
+      'config.factory',
+      'config.finder',
     ];
   }
 }
