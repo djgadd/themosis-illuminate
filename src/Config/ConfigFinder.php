@@ -3,9 +3,9 @@
 namespace KeltieCochrane\Illuminate\Config;
 
 use Symfony\Component\Finder\Finder;
-use Themosis\Finder\Finder as ThemosisFinder;
+use Themosis\Config\ConfigFinder as ThemosisConfigFinder;
 
-class ConfigFinder extends ThemosisFinder
+class ConfigFinder extends ThemosisConfigFinder
 {
     /**
      * The file extensions.
