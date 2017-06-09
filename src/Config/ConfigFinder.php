@@ -42,7 +42,7 @@ class ConfigFinder extends ThemosisConfigFinder
             // We already have a matching file so we need to merge the config
             if (array_key_exists($key, $this->files)) {
               $this->files[$key][] = $file->getRealPath();
-              $items = array_merge_recursive(app('config')->get($key), require $file->getRealPath());
+              $items = $this->mergeConfigs(app('config')->get($key), require $file->getRealPath());
             }
             // Otherwise we can just require the config in
             else {
@@ -90,5 +90,31 @@ class ConfigFinder extends ThemosisConfigFinder
       }
 
       return $nested;
+    }
+
+    /**
+     * Recusively merges configs together
+     *
+     * @param array $old
+     * @param array $new
+     * @return array
+     */
+    protected function mergeConfigs(array $old, array $new) : array
+    {
+      foreach ($new as $key => $val) {
+        if (!array_key_exists($key, $old) || !is_array($old[$key]) || !is_array($val)) {
+          $old[$key] = $val;
+          continue;
+        }
+
+        if (is_int($key)) {
+          $old[] = $val;
+          continue;
+        }
+
+        $old[$key] = $this->mergeConfigs($old[$key], $val);
+      }
+
+      return $old;
     }
 }
