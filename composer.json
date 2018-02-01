@@ -1,7 +1,7 @@
 {
   "name": "djgadd/themosis-illuminate",
   "description": "A themosis plugin that implements the illuminate/cache packing with a WP_Object_Cache driver",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "keywords": ["themosis", "plugin"],
   "authors": [
     {
