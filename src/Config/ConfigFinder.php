@@ -84,6 +84,10 @@ class ConfigFinder extends ThemosisConfigFinder
      */
     protected function getNestedDirectoryDots(string $path, string $filePath) : string
     {
+      if (substr($filePath, -1) !== DIRECTORY_SEPARATOR) {
+        $filePath = $filePath . DIRECTORY_SEPARATOR;
+      }
+
       // Generate dots if it's a nested file
       if ($nested = trim(str_replace($path, '', $filePath), DIRECTORY_SEPARATOR)) {
           $nested = str_replace(DIRECTORY_SEPARATOR, '.', $nested).'.';
